@@ -1,0 +1,14 @@
+diff --git a/BaseTools/Source/Python/AutoGen/ModuleAutoGen.py b/BaseTools/Source/Python/AutoGen/ModuleAutoGen.py
+index f610365f6d..601a55b351 100755
+--- a/BaseTools/Source/Python/AutoGen/ModuleAutoGen.py
++++ b/BaseTools/Source/Python/AutoGen/ModuleAutoGen.py
+@@ -1802,7 +1802,8 @@ class ModuleAutoGen(AutoGen):
+ 
+         MewIR = ModuleBuildCacheIR(self.MetaFile.Path, self.Arch)
+         MewIR.MakefilePath = MakefilePath
+-        MewIR.DependencyHeaderFileSet = Makefile.DependencyHeaderFileSet
++        if len(self.CustomMakefile) == 0:
++            MewIR.DependencyHeaderFileSet = Makefile.DependencyHeaderFileSet
+         MewIR.CreateMakeFileDone = True
+         with GlobalData.cache_lock:
+             try:
